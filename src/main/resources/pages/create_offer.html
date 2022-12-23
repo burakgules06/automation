@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Offers</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div class = "container">
+  <div class="row">
+    <div class = "col-lg-6 cold-md-6 col-sm-6 container justify-content-center card">
+      <h1>Create New Offer</h1>
+      <div class="card-body">
+        <form th:action="@{/offers}" th:object="${offer}" method="POST">
+          <div class = "form-group">
+            <label>Offer Müşteri Id</label>
+            <input
+                    type="text"
+                    name="customer"
+                    th:field = "${offer.customer.customerId}"
+                    class="form-control"
+            />
+          </div>
+          <div class="col-auto my-1">
+            <label class="mr-sm-2" for="inlineFormCustomSelect">Motor Yönü</label>
+            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+              <option th:each="motordirection: ${offer.motordirection.v}"
+                      th:value="${RIGHT}"
+              >
+
+              </option>
+            </select>
+          </div>
+          <div class="footer-body">
+            <button type="submit" class="btn btn-primary"> Kaydet </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

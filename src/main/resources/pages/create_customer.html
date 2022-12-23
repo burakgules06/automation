@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Customers</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
+</head>
+<body>
+  <div class = "container">
+    <div class="row">
+      <div class = "col-lg-6 cold-md-6 col-sm-6 container justify-content-center card">
+        <h1>Create New Customer</h1>
+        <div class="card-body">
+          <form th:action="@{/customers}" th:object="${customer}" method="POST">
+            <div class = "form-group">
+              <label>Customer Name</label>
+              <input
+               type="text"
+               name="customerName"
+               th:field = "*{customerName}"
+               class="form-control"
+              />
+            </div>
+            <div class = "form-group">
+              <label>Customer Last Name</label>
+              <input
+               type="text"
+               name="customerLastName"
+               th:field = "*{customerLastName}"
+               class="form-control"
+              />
+            </div>
+            <div class = "form-group">
+              <label>Customer Number</label>
+              <input
+               type="text"
+               name="customerTelno"
+               th:field = "*{customerTelNo}"
+               class="form-control"
+              />
+            </div>
+            <div class = "form-group">
+              <label>İl</label>
+              <input
+               type="text"
+               name="customerCity"
+               th:field = "*{customerCity}"
+               class="form-control"
+              />
+            </div>
+            <div class = "form-group">
+              <label>İlçe</label>
+              <input
+               type="text"
+               name="customerDistrict"
+               th:field = "*{customerDistrict}"
+               class="form-control"
+              />
+            </div>
+            <div class = "form-group">
+              <label>Mahalle</label>
+              <input
+               type="text"
+               name="customerNeighbourhood"
+               th:field = "*{customerNeighbourhood}"
+               class="form-control"
+              />
+            </div>
+            <div class = "form-group">
+              <label>Cadde/sokak</label>
+              <input
+               type="text"
+               name="customerStreet"
+               th:field = "*{customerStreet}"
+               class="form-control"
+              />
+            </div>
+            <div class = "form-group">
+              <label>Bina No</label>
+              <input
+               type="text"
+               name="customerBuildingNo"
+               th:field = "*{customerBuildingNo}"
+               class="form-control"
+              />
+            </div>
+            <div class = "form-group">
+              <label>Daire No</label>
+              <input
+               type="text"
+               name="customerNo"
+               th:field = "*{customerNo}"
+               class="form-control"
+              />
+            </div>
+            <div class="footer-body">
+              <button type="submit" class="btn btn-primary"> Kaydet </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
