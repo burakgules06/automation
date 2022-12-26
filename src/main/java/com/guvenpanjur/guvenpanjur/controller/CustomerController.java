@@ -1,16 +1,13 @@
 package com.guvenpanjur.guvenpanjur.controller;
 
-import com.guvenpanjur.guvenpanjur.model.dto.CustomerDTO;
-import com.guvenpanjur.guvenpanjur.model.dto.request.RequestUpdateCustomerDTO;
 import com.guvenpanjur.guvenpanjur.model.entity.Customer;
 import com.guvenpanjur.guvenpanjur.service.CustomerService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequiredArgsConstructor
@@ -24,15 +21,23 @@ public class CustomerController {
     }
     @GetMapping("/customers/new")
     public String createCustomer(Model model){
-        Customer customer = new Customer();
-        model.addAttribute("customer", customer);
+        model.addAttribute("customer", new Customer());
         return "create_customer";
     }
     @PostMapping("/customers")
-    public String saveCustomer(@ModelAttribute("customer") Customer customer){
-        customerService.saveCustomer(customer);
-        return "redirect:/customers";
+    public String saveCustomer(@ModelAttribute("customer") Customer customer,
+                               RedirectAttributes redirectAttributes){
+        customer=customerService.saveCustomer(customer);
+        redirectAttributes.addAttribute("customerId",customer.getCustomerId());
+        return "redirect:/offers/new";
 
+    }
+
+    @GetMapping("/test1")
+    public ModelAndView test(RedirectAttributes redirectAttributes){
+        ModelAndView modelAndView=new ModelAndView("redirect:/test2");
+        redirectAttributes.addAttribute("id","DENEME");
+        return modelAndView;
     }
 
 

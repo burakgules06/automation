@@ -24,11 +24,9 @@
         </thead>
         <tbody>
         <tr th:each = "offer: ${offers}">
-            <td th:text="${offer.getOfferId()}"></td>
-            <td th:text="${offer.getCustomer().customerId}"></td>
-            <td th:text="${offer.getCustomer().customerLastName}"></td>
-            <td th:text="${offer.getProductinfo()}"></td>
-            <td th:text="${offer.getOrderstatus()}"></td>
+            <td th:text="${offer.getId()}"></td>
+            <td th:text="${offer.getWidth()}"></td>
+            <td th:text="${offer.getHeight()}"></td>
         </tr>
         </tbody>
     </table>

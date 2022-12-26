@@ -24,6 +24,11 @@ public class CustomerServiceImpl implements CustomerService
         return customerRepository.save(customer);
     }
 
+    @Override
+    public Customer getById(Long id) {
+        return customerRepository.findById(id).orElse(Customer.builder().customerId(100L).build());
+    }
+
 
     /**
     private final ModelMapper modelMapper;
