@@ -1,10 +1,15 @@
 package com.guvenpanjur.guvenpanjur.service.Impl;
 
+import com.guvenpanjur.guvenpanjur.model.dto.request.RequestCreateOffer;
 import com.guvenpanjur.guvenpanjur.model.dto.response.OfferResponse;
+import com.guvenpanjur.guvenpanjur.model.dto.response.ResponseCustomer;
+import com.guvenpanjur.guvenpanjur.model.entity.Customer;
 import com.guvenpanjur.guvenpanjur.model.entity.Offer;
 import com.guvenpanjur.guvenpanjur.repository.OfferRepository;
+import com.guvenpanjur.guvenpanjur.service.CustomerService;
 import com.guvenpanjur.guvenpanjur.service.OfferService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,16 +19,34 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class OfferServiceImpl implements OfferService {
     private final OfferRepository offerRepository;
-
+    private final ModelMapper modelMapper;
+    private final CustomerService customerService;
     @Override
     public List<OfferResponse> findOffers() {
         return offerRepository.findAll().stream()
-                .map(offer -> OfferResponse.getInstance(offer))
+                .map(offer -> {
+                    var res=modelMapper.map(offer,OfferResponse.class);
+                    var resCustomer=modelMapper.map(offer.getCustomers(),ResponseCustomer.class);
+                    res.setCustomer(resCustomer);
+                    return res;
+
+                })
                 .collect(Collectors.toList());
     }
-
     @Override
-    public Offer saveOffer(Offer offer) {
-        return offerRepository.save(offer);
+    public void saveOffer(RequestCreateOffer request) {
+        ///Todo check customer id
+        customerService.getById(request.getCustomerId());
+
+        //Todo create offer
+        Offer offer=new Offer();
+        offer.setHeight(request.getHeight());
+        offer.setWidth(request.getWidth());
+        offer.setUnit(request.getUnit());
+        offer.setCustomers(Customer.builder()
+                .customerId(request.getCustomerId())
+                .build());
+        offer.setMotordirection(request.getMotordirection());
+        offerRepository.save(offer);
     }
 }

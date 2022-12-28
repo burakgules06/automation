@@ -1,18 +1,21 @@
 package com.guvenpanjur.guvenpanjur.controller;
 
-import com.guvenpanjur.guvenpanjur.model.entity.Customer;
+import com.guvenpanjur.guvenpanjur.model.dto.request.RequestCreateCustomer;
+import com.guvenpanjur.guvenpanjur.model.dto.response.ResponseCustomer;
+import com.guvenpanjur.guvenpanjur.model.viewmodel.CreateCustomerViewModel;
+import com.guvenpanjur.guvenpanjur.repository.CustomerRepository;
 import com.guvenpanjur.guvenpanjur.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequiredArgsConstructor
 public class CustomerController {
     private final CustomerService customerService;
+    private final CustomerRepository customerRepository;
 
     @GetMapping("/customers")
     public String listCustomers(Model model){
@@ -21,27 +24,28 @@ public class CustomerController {
     }
     @GetMapping("/customers/new")
     public String createCustomer(Model model){
-        model.addAttribute("customer", new Customer());
+        CreateCustomerViewModel customerViewModel = new CreateCustomerViewModel();
+        model.addAttribute("customerViewModel", customerViewModel);
         return "create_customer";
     }
     @PostMapping("/customers")
-    public String saveCustomer(@ModelAttribute("customer") Customer customer,
+    public String saveCustomer(@ModelAttribute("customerViewModel") CreateCustomerViewModel customer,
                                RedirectAttributes redirectAttributes){
-        customer=customerService.saveCustomer(customer);
-        redirectAttributes.addAttribute("customerId",customer.getCustomerId());
+        RequestCreateCustomer createCustomer = new RequestCreateCustomer();
+
+        createCustomer.setCustomerName(customer.getCustomerName());
+        createCustomer.setCustomerLastName(customer.getCustomerLastName());
+        createCustomer.setCustomerTelNo(customer.getCustomerTelNo());
+        createCustomer.setCustomerCity(customer.getCustomerCity());
+        createCustomer.setCustomerDistrict(customer.getCustomerDistrict());
+        createCustomer.setCustomerNeighbourhood(customer.getCustomerNeighbourhood());
+        createCustomer.setCustomerStreet(customer.getCustomerStreet());
+        createCustomer.setCustomerBuildingNo(customer.getCustomerBuildingNo());
+        createCustomer.setCustomerNo(customer.getCustomerNo());
+        customerService.saveCustomer(createCustomer.getCustomerId());
+        redirectAttributes.addAttribute("customerId", createCustomer.getCustomerId());
         return "redirect:/offers/new";
-
     }
-
-    @GetMapping("/test1")
-    public ModelAndView test(RedirectAttributes redirectAttributes){
-        ModelAndView modelAndView=new ModelAndView("redirect:/test2");
-        redirectAttributes.addAttribute("id","DENEME");
-        return modelAndView;
-    }
-
-
-
     /**
      @PostMapping("/create")
      public ResponseEntity<CustomerDTO> createCustomer(@RequestBody CustomerDTO customerDTO){

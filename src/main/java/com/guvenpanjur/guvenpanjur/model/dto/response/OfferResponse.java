@@ -13,21 +13,12 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class OfferResponse {
     private Long id;
+    private long offerId;
     private double width;
     private double height;
-    private String unit;
+    private int unit;
     private String motordirection;
     private Long customersId;
+    private ResponseCustomer customer;
 
-    public static OfferResponse getInstance(Offer offer){
-        OfferResponse offerResponse = new OfferResponse();
-        offerResponse.setId(offer.getOfferId());
-        offerResponse.setWidth(offer.getWidth());
-        offerResponse.setHeight(offer.getHeight());
-        offerResponse.setUnit(offer.getUnit());
-        offerResponse.setMotordirection(offer.getMotordirection());
-        if(offer.getCustomers()!=null)
-            offerResponse.setCustomersId(offer.getOfferId());
-        return offerResponse;
-    }
 }

@@ -20,9 +20,10 @@ public class Offer {
     private long offerId;
     private double width;
     private double height;
-    private String unit;
+    private int unit;
     private String motordirection;
     @OneToOne
     @JoinColumn(name = "customer_id")
     private Customer customers;
+
 }

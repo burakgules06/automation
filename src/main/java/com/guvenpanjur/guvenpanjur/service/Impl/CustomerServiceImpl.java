@@ -1,17 +1,22 @@
 package com.guvenpanjur.guvenpanjur.service.Impl;
 
+import com.guvenpanjur.guvenpanjur.model.dto.request.RequestCreateCustomer;
+import com.guvenpanjur.guvenpanjur.model.dto.response.ResponseCustomer;
 import com.guvenpanjur.guvenpanjur.model.entity.Customer;
 import com.guvenpanjur.guvenpanjur.repository.CustomerRepository;
 import com.guvenpanjur.guvenpanjur.service.CustomerService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService
 {
+    private final ModelMapper modelMapper;
     private final CustomerRepository customerRepository;
 
     @Override
@@ -20,14 +25,36 @@ public class CustomerServiceImpl implements CustomerService
     }
 
     @Override
-    public Customer saveCustomer(Customer customer) {
-        return customerRepository.save(customer);
+    public ResponseCustomer saveCustomer(ResponseCustomer customer) {
+        Customer customer1 = modelMapper.map(customer,Customer.class);
+        return modelMapper.map(customerRepository.save(customer1),ResponseCustomer.class);
     }
 
     @Override
-    public Customer getById(Long id) {
-        return customerRepository.findById(id).orElse(Customer.builder().customerId(100L).build());
+    public RequestCreateCustomer getById(Long id) {
+        Optional<Customer> customer = customerRepository.findById(id);
+        if(customer.isPresent()){
+            return modelMapper.map(customer.get(),RequestCreateCustomer.class);
+        }
+        throw new IllegalArgumentException("kullanıcı yok");
     }
+    /**
+    @Override
+    public RequestCreateCustomer saveCustomer(RequestCreateCustomer request) {
+        Customer customer = new Customer();
+        customer.setCustomerId(request.getCustomerId());
+        customer.setCustomerName(request.getCustomerName());
+        customer.setCustomerLastName(request.getCustomerLastName());
+        customer.setCustomerTelNo(request.getCustomerTelNo());
+        customer.setCustomerCity(request.getCustomerCity());
+        customer.setCustomerDistrict(request.getCustomerDistrict());
+        customer.setCustomerNeighbourhood(request.getCustomerNeighbourhood());
+        customer.setCustomerStreet(request.getCustomerStreet());
+        customer.setCustomerBuildingNo(request.getCustomerBuildingNo());
+        customer.setCustomerNo(request.getCustomerNo());
+        customerRepository.save(customer);
+    }
+    */
 
 
     /**

@@ -5,9 +5,10 @@ import lombok.Data;
 public class RequestCreateOffer {
     private double width;
     private double height;
-    private String unit;
+    private int unit;
     private String motordirection;
     private Long customerId;
+    
 
     public double getWidth() {
         return width;
@@ -25,11 +26,11 @@ public class RequestCreateOffer {
         this.height = height;
     }
 
-    public String getUnit() {
+    public int getUnit() {
         return unit;
     }
 
-    public void setUnit(String unit) {
+    public void setUnit(int unit) {
         this.unit = unit;
     }
 
