@@ -44,7 +44,9 @@ public class CustomerServiceImpl implements CustomerService
         customer.setCustomerStreet(request.getCustomerStreet());
         customer.setCustomerBuildingNo(request.getCustomerBuildingNo());
         customer.setCustomerNo(request.getCustomerNo());
-        return customerRepository.save(customer);
+        var customerSave = customerRepository.save(customer);
+        return customerSave;
+
     }
 
 
