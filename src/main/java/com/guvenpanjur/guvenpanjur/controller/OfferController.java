@@ -47,6 +47,8 @@ public class OfferController {
     @GetMapping("/offers/new")
     public String createOffer(Model model,@RequestParam(value = "customerId",required = false)Long customerId){
         CreateOfferViewModel offerViewModel=new CreateOfferViewModel();
+
+
         if (customerId!=null){
             try {
                 customerService.getById(customerId);

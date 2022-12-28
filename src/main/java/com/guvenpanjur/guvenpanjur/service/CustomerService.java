@@ -1,17 +1,17 @@
 package com.guvenpanjur.guvenpanjur.service;
 
 import com.guvenpanjur.guvenpanjur.model.dto.request.RequestCreateCustomer;
-import com.guvenpanjur.guvenpanjur.model.dto.response.ResponseCustomer;
 import com.guvenpanjur.guvenpanjur.model.entity.Customer;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CustomerService {
 
 
     List<Customer> findCustomers();
-    ResponseCustomer saveCustomer(ResponseCustomer customer);
-    RequestCreateCustomer getById(Long id);
+    Optional<Customer> getById(Long id);
+    Customer saveCustomer(RequestCreateCustomer request);
     /**
     CustomerDTO findCustomer(Long id);
     CustomerDTO createCustomer(CustomerDTO customerDTO);

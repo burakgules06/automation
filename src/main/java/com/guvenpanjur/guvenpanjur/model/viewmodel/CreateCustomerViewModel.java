@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class CreateCustomerViewModel {
+    private Long customerId;
     private String customerName;
     private String customerLastName;
     private String customerTelNo;

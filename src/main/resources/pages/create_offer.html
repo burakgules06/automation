@@ -18,7 +18,7 @@
         <form th:action="@{/offers}" th:object="${offerViewModel}" method="POST">
           <div class = "form-group">
             <label>Adet</label>
-            <input type="hidden" th:if="${offerViewModel.customerId!=null}" th:field="${offerViewModel.customerId}">
+           <!-- <input type="hidden" th:if="${offerViewModel.customerId!=null}" th:field="${offerViewModel.customerId}">-->
             <input
                     type="text"
                     name="unit"

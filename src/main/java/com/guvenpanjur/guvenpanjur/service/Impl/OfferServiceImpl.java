@@ -13,6 +13,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -36,17 +37,20 @@ public class OfferServiceImpl implements OfferService {
     @Override
     public void saveOffer(RequestCreateOffer request) {
         ///Todo check customer id
-        customerService.getById(request.getCustomerId());
+        Optional<Customer> customer = customerService.getById(request.getCustomerId());
 
+        if(customer != null) {
+            Offer offer=new Offer();
+            offer.setHeight(request.getHeight());
+            offer.setWidth(request.getWidth());
+            offer.setUnit(request.getUnit());
+            offer.setCustomers(customer.get());
+            offer.setMotordirection(request.getMotordirection());
+            offerRepository.save(offer);
+        } else {
+            throw new RuntimeException("asdasd");
+        }
         //Todo create offer
-        Offer offer=new Offer();
-        offer.setHeight(request.getHeight());
-        offer.setWidth(request.getWidth());
-        offer.setUnit(request.getUnit());
-        offer.setCustomers(Customer.builder()
-                .customerId(request.getCustomerId())
-                .build());
-        offer.setMotordirection(request.getMotordirection());
-        offerRepository.save(offer);
+
     }
 }

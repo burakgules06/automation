@@ -2,6 +2,7 @@ package com.guvenpanjur.guvenpanjur.controller;
 
 import com.guvenpanjur.guvenpanjur.model.dto.request.RequestCreateCustomer;
 import com.guvenpanjur.guvenpanjur.model.dto.response.ResponseCustomer;
+import com.guvenpanjur.guvenpanjur.model.entity.Customer;
 import com.guvenpanjur.guvenpanjur.model.viewmodel.CreateCustomerViewModel;
 import com.guvenpanjur.guvenpanjur.repository.CustomerRepository;
 import com.guvenpanjur.guvenpanjur.service.CustomerService;
@@ -29,10 +30,9 @@ public class CustomerController {
         return "create_customer";
     }
     @PostMapping("/customers")
-    public String saveCustomer(@ModelAttribute("customerViewModel") CreateCustomerViewModel customer,
-                               RedirectAttributes redirectAttributes){
-        RequestCreateCustomer createCustomer = new RequestCreateCustomer();
+    public String saveCustomer(@ModelAttribute("customerViewModel") CreateCustomerViewModel customer, RedirectAttributes redirectAttributes){
 
+        RequestCreateCustomer createCustomer = new RequestCreateCustomer();
         createCustomer.setCustomerName(customer.getCustomerName());
         createCustomer.setCustomerLastName(customer.getCustomerLastName());
         createCustomer.setCustomerTelNo(customer.getCustomerTelNo());
@@ -42,8 +42,12 @@ public class CustomerController {
         createCustomer.setCustomerStreet(customer.getCustomerStreet());
         createCustomer.setCustomerBuildingNo(customer.getCustomerBuildingNo());
         createCustomer.setCustomerNo(customer.getCustomerNo());
-        customerService.saveCustomer(createCustomer.getCustomerId());
-        redirectAttributes.addAttribute("customerId", createCustomer.getCustomerId());
+        Customer savedCustomer =  customerService.saveCustomer(createCustomer);
+        createCustomer.setCustomerId(savedCustomer.getCustomerId());
+
+
+
+       redirectAttributes.addAttribute("customerId", createCustomer.getCustomerId());
         return "redirect:/offers/new";
     }
     /**

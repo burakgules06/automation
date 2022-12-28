@@ -1,7 +1,6 @@
 package com.guvenpanjur.guvenpanjur.service.Impl;
 
 import com.guvenpanjur.guvenpanjur.model.dto.request.RequestCreateCustomer;
-import com.guvenpanjur.guvenpanjur.model.dto.response.ResponseCustomer;
 import com.guvenpanjur.guvenpanjur.model.entity.Customer;
 import com.guvenpanjur.guvenpanjur.repository.CustomerRepository;
 import com.guvenpanjur.guvenpanjur.service.CustomerService;
@@ -24,25 +23,18 @@ public class CustomerServiceImpl implements CustomerService
         return customerRepository.findAll();
     }
 
-    @Override
-    public ResponseCustomer saveCustomer(ResponseCustomer customer) {
-        Customer customer1 = modelMapper.map(customer,Customer.class);
-        return modelMapper.map(customerRepository.save(customer1),ResponseCustomer.class);
-    }
 
     @Override
-    public RequestCreateCustomer getById(Long id) {
-        Optional<Customer> customer = customerRepository.findById(id);
-        if(customer.isPresent()){
-            return modelMapper.map(customer.get(),RequestCreateCustomer.class);
-        }
-        throw new IllegalArgumentException("kullanıcı yok");
+    public Optional<Customer> getById(Long id) {
+        return customerRepository.findById(id);
+
+
+
+
     }
-    /**
     @Override
-    public RequestCreateCustomer saveCustomer(RequestCreateCustomer request) {
+    public Customer saveCustomer(RequestCreateCustomer request) {
         Customer customer = new Customer();
-        customer.setCustomerId(request.getCustomerId());
         customer.setCustomerName(request.getCustomerName());
         customer.setCustomerLastName(request.getCustomerLastName());
         customer.setCustomerTelNo(request.getCustomerTelNo());
@@ -52,9 +44,9 @@ public class CustomerServiceImpl implements CustomerService
         customer.setCustomerStreet(request.getCustomerStreet());
         customer.setCustomerBuildingNo(request.getCustomerBuildingNo());
         customer.setCustomerNo(request.getCustomerNo());
-        customerRepository.save(customer);
+        return customerRepository.save(customer);
     }
-    */
+
 
 
     /**
