@@ -8,4 +8,5 @@ import java.util.List;
 
 public class OfferDataUtil {
     public static List<String> motordirectionList = Arrays.asList("Sol","Sağ");
+    public static List<String> offerstatus = Arrays.asList("Teslim Edildi","Fabrikada");
 }

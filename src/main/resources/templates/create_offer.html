@@ -29,19 +29,16 @@
 
 
           <div class="form-group">
-            <title>-Motor Yönü-</title>
-          <select  th:field="${offerViewModel.motordirection}"><br/><br/>
+            <label> Motor Yönü </label>
+            <select  th:field="${offerViewModel.motordirection}"><br/><br/>
             <option th:each="c : ${motordirections}" th:value="${c}" th:text="${c}">
             </option>
           </select>
           </div>
 
           <div class="form-group">
-            <label th:for="motordirection">Motor Yönü</label>
-            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="motordirection">
-              <option th:each = "motordirection : ${motordirectionList}"
-                      th:text="${motordirection}">
-              </option>
+            <select  th:field="${offerViewModel.offerstatus}">
+              <option th:value="${offerstatus[1]}"></option>
             </select>
           </div>
 
@@ -94,6 +91,37 @@
 </div>
 
 </div>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+    </tr>
+    </tbody>
+  </table>
 </div>
 </body>
 </html>

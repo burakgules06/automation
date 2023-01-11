@@ -1,6 +1,7 @@
 package com.guvenpanjur.guvenpanjur.service.Impl;
 
 import com.guvenpanjur.guvenpanjur.model.dto.request.RequestCreateCustomer;
+import com.guvenpanjur.guvenpanjur.model.dto.request.RequestUpdateCustomer;
 import com.guvenpanjur.guvenpanjur.model.entity.Customer;
 import com.guvenpanjur.guvenpanjur.repository.CustomerRepository;
 import com.guvenpanjur.guvenpanjur.service.CustomerService;
@@ -27,10 +28,30 @@ public class CustomerServiceImpl implements CustomerService
     @Override
     public Optional<Customer> getById(Long id) {
         return customerRepository.findById(id);
-
-
-
-
+    }
+    public Optional<Customer> getCustomerById(Long id){
+        Optional<Customer> optionalCustomer = customerRepository.findById(id);
+        Customer customer = null;
+        if(optionalCustomer.isPresent()){
+            customer = optionalCustomer.get();
+        }
+        else {
+            throw new RuntimeException("Müşteri Bulunamadı");
+        }
+        return Optional.of(customer);
+    }
+    public void updateCustomer(RequestUpdateCustomer request){
+        Customer customer = new Customer();
+        customer.setCustomerName(request.getCustomerName());
+        customer.setCustomerLastName(request.getCustomerLastName());
+        customer.setCustomerTelNo(request.getCustomerTelNo());
+        customer.setCustomerCity(request.getCustomerCity());
+        customer.setCustomerDistrict(request.getCustomerDistrict());
+        customer.setCustomerNeighbourhood(request.getCustomerNeighbourhood());
+        customer.setCustomerStreet(request.getCustomerStreet());
+        customer.setCustomerBuildingNo(request.getCustomerBuildingNo());
+        customer.setCustomerNo(request.getCustomerNo());
+        customerRepository.save(customer);
     }
     @Override
     public Customer saveCustomer(RequestCreateCustomer request) {

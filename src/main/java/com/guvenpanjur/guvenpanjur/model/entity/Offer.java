@@ -21,9 +21,15 @@ public class Offer {
     private double width;
     private double height;
     private int unit;
+    private double kumasEnKesimOlcusu;
+    private double kumasBoyKesimOlcusu;
+    private double kumasBirimFiyat;
+    private double kumasSonFiyat;
     private String motordirection;
+    private String offerstatus;
     @OneToOne
     @JoinColumn(name = "customer_id")
     private Customer customers;
+
 
 }

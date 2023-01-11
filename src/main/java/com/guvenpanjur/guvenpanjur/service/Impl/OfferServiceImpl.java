@@ -1,5 +1,6 @@
 package com.guvenpanjur.guvenpanjur.service.Impl;
 
+import com.guvenpanjur.guvenpanjur.controller.util.OfferDataUtil;
 import com.guvenpanjur.guvenpanjur.model.dto.request.RequestCreateOffer;
 import com.guvenpanjur.guvenpanjur.model.dto.response.OfferResponse;
 import com.guvenpanjur.guvenpanjur.model.dto.response.ResponseCustomer;
@@ -22,6 +23,7 @@ public class OfferServiceImpl implements OfferService {
     private final OfferRepository offerRepository;
     private final ModelMapper modelMapper;
     private final CustomerService customerService;
+
     @Override
     public List<OfferResponse> findOffers() {
         return offerRepository.findAll().stream()
@@ -36,9 +38,7 @@ public class OfferServiceImpl implements OfferService {
     }
     @Override
     public void saveOffer(RequestCreateOffer request) {
-        ///Todo check customer id
         Optional<Customer> customer = customerService.getById(request.getCustomerId());
-
         if(customer != null) {
             Offer offer=new Offer();
             offer.setHeight(request.getHeight());
@@ -46,11 +46,13 @@ public class OfferServiceImpl implements OfferService {
             offer.setUnit(request.getUnit());
             offer.setCustomers(customer.get());
             offer.setMotordirection(request.getMotordirection());
+            offer.setOfferstatus(request.getOfferstatus());
+            offer.setKumasBoyKesimOlcusu(request.getKumasBoyKesimOlcusu());
+            offer.setKumasEnKesimOlcusu(request.getKumasEnKesimOlcusu());
+            offer.setKumasSonFiyat(request.getKumasSonFiyat());
             offerRepository.save(offer);
         } else {
-            throw new RuntimeException("asdasd");
+            throw new RuntimeException("Id Null!");
         }
-        //Todo create offer
-
     }
 }

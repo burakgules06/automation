@@ -1,7 +1,7 @@
 package com.guvenpanjur.guvenpanjur.controller;
 
 import com.guvenpanjur.guvenpanjur.model.dto.request.RequestCreateCustomer;
-import com.guvenpanjur.guvenpanjur.model.dto.response.ResponseCustomer;
+import com.guvenpanjur.guvenpanjur.model.dto.request.RequestUpdateCustomer;
 import com.guvenpanjur.guvenpanjur.model.entity.Customer;
 import com.guvenpanjur.guvenpanjur.model.viewmodel.CreateCustomerViewModel;
 import com.guvenpanjur.guvenpanjur.repository.CustomerRepository;
@@ -9,8 +9,12 @@ import com.guvenpanjur.guvenpanjur.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -45,11 +49,24 @@ public class CustomerController {
         Customer savedCustomer =  customerService.saveCustomer(createCustomer);
         createCustomer.setCustomerId(savedCustomer.getCustomerId());
 
-
-
-       redirectAttributes.addAttribute("customerId", createCustomer.getCustomerId());
+        redirectAttributes.addAttribute("customerId", createCustomer.getCustomerId());
         return "redirect:/offers/new";
     }
+
+    @GetMapping("/customers/edit/{id}")
+    public String editCustomer(Model model, @PathVariable("id") Long id){
+        Optional<Customer> customer = customerService.getCustomerById(id);
+        model.addAttribute("customerViewModel", customerService.getCustomerById(id));
+        return "customer_edit";
+    }
+    @PostMapping("/customers/edit")
+    public ModelAndView updateCustomer(@ModelAttribute("customerViewModel")RequestUpdateCustomer request, BindingResult result){
+        ModelAndView model = new ModelAndView();
+        customerService.updateCustomer(request);
+        model.setViewName("redirect:/customers");
+        return model;
+    }
+
     /**
      @PostMapping("/create")
      public ResponseEntity<CustomerDTO> createCustomer(@RequestBody CustomerDTO customerDTO){

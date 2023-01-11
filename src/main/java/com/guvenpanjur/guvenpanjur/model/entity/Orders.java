@@ -17,7 +17,4 @@ public class Orders {
     private Customer customer;
     @OneToOne
     private Offer offer;
-    @Enumerated(EnumType.STRING)
-    private orderstatus orderstatus = com.guvenpanjur.guvenpanjur.model.enums.orderstatus.ATTHEFACTORY;
-
 }

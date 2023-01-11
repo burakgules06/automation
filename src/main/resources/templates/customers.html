@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Customers</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css" th:href="@{css/main.css}"/>
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container">
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link mx-2 active" aria-current="page" th:href="@{/}">Anasayfa</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-2" th:href="@{/offers}">Siparişler</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-2" th:href="@{/customers}">Müşteriler</a>
+                </li>
+                <li>
+                    <img src="../static/images/logo.png" th:src="@{images/logo.png}" height="80" style="padding-bottom: 1%" />
+                </li>
+                <li style="padding-left: 4%">
+
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-2" href="#">Sineklik</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-2" href="#">Zip Perde</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-2" href="#">Stok Kartı</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+          <div class = "row">
+              <h1>Müşteri Listesi</h1>
+          </div>
+        <div class = "row">
+            <div class="col-lg-3">
+                <a th:href="@{/customers/new}" class = "btn btn-dark btn-sm mb-3">Müşteri Ekle +</a>
+            </div>
+        </div>
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Müşteri Numarası</th>
+                    <th>Ad</th>
+                    <th>Soyad</th>
+                    <th>Telno</th>
+                    <th>Şehir</th>
+                    <th>İşlem</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <th:block th:each="customer : ${customers}">
+                    <tr>
+                        <td>[[${customer.customerId}]]</td>
+                        <td>[[${customer.customerName}]]</td>
+                        <td>[[${customer.customerLastName}]]</td>
+                        <td>[[${customer.customerTelNo}]]</td>
+                        <td>[[${customer.customerCity}]]</td>
+                        <td><btn class="btn btn-warning"><a href = "#" th:href="@{/customers/edit/{id} (id=${customer.customerId})}">Düzenle</a></btn></td>
+                    </tr>
+                </th:block>
+            </tbody>
+        </table>
+      </div>
+</body>
+</html>

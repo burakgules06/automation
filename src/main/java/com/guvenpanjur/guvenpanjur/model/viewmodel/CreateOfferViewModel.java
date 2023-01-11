@@ -8,5 +8,6 @@ public class CreateOfferViewModel {
     private double height;
     private int unit;
     private String motordirection;
+    private String offerstatus;
     private Long customerId;
 }

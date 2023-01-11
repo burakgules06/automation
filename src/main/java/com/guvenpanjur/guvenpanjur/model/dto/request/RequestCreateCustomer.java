@@ -7,7 +7,6 @@ public class RequestCreateCustomer {
     private Long customerId;
 
     private String customerName;
-
     private String customerLastName;
 
     private String customerTelNo;
