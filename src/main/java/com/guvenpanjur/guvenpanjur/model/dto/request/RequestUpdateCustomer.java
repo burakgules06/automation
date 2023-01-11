@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class RequestUpdateCustomer {
-
+    private Long customerId;
     private String customerName;
     private String customerLastName;
     private String customerTelNo;

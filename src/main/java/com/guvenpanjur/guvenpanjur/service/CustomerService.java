@@ -16,7 +16,7 @@ public interface CustomerService {
     Customer saveCustomer(RequestCreateCustomer request);
 
     Optional<Customer> getCustomerById(Long id);
-    void updateCustomer(RequestUpdateCustomer request);
+    void updateCustomer(Long id, RequestUpdateCustomer request);
     /**
     CustomerDTO findCustomer(Long id);
     CustomerDTO createCustomer(CustomerDTO customerDTO);

@@ -9,7 +9,9 @@ import com.guvenpanjur.guvenpanjur.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -23,7 +25,7 @@ public class CustomerController {
     private final CustomerRepository customerRepository;
 
     @GetMapping("/customers")
-    public String listCustomers(Model model){
+    public String listCustomers(ModelMap model){
        model.addAttribute("customers", customerService.findCustomers());
        return "customers";
     }
@@ -55,16 +57,19 @@ public class CustomerController {
 
     @GetMapping("/customers/edit/{id}")
     public String editCustomer(Model model, @PathVariable("id") Long id){
-        Optional<Customer> customer = customerService.getCustomerById(id);
-        model.addAttribute("customerViewModel", customerService.getCustomerById(id));
+        Optional<Customer> customer = customerService.getById(id);
+        model.addAttribute("editCustomer", customer);
         return "customer_edit";
     }
-    @PostMapping("/customers/edit")
-    public ModelAndView updateCustomer(@ModelAttribute("customerViewModel")RequestUpdateCustomer request, BindingResult result){
-        ModelAndView model = new ModelAndView();
-        customerService.updateCustomer(request);
-        model.setViewName("redirect:/customers");
-        return model;
+    @PostMapping("/customers/update/{id}")
+    public String updateCustomer(@PathVariable("id") Long id, @Validated RequestUpdateCustomer request, BindingResult result, Model model){
+        if(result.hasErrors()){
+            request.setCustomerId(id);
+            return "customer_edit";
+        }
+        customerService.updateCustomer(id,request);
+        model.addAttribute("editCustomer", customerService.findCustomers());
+        return "redirect:/customers";
     }
 
     /**

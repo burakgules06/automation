@@ -40,8 +40,9 @@ public class CustomerServiceImpl implements CustomerService
         }
         return Optional.of(customer);
     }
-    public void updateCustomer(RequestUpdateCustomer request){
+    public void updateCustomer(Long id,RequestUpdateCustomer request){
         Customer customer = new Customer();
+        customer.setCustomerId(request.getCustomerId());
         customer.setCustomerName(request.getCustomerName());
         customer.setCustomerLastName(request.getCustomerLastName());
         customer.setCustomerTelNo(request.getCustomerTelNo());
