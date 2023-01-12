@@ -16,13 +16,9 @@ public class Stock {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private int piece;
-    private String brand;
-    private String model;
-    private String productName;
-    private String details;
-    private String category;
-    private String color;
     private double purchasePrice;
-    private double measurement;
-    private double componentHeight;
+    private String productType;
+    private String color;
+    private String productName;
+    private String stockDetails;
 }

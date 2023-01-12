@@ -6,6 +6,10 @@ import com.guvenpanjur.guvenpanjur.service.CurrencyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 @Service
 @RequiredArgsConstructor
 public class CurrencyServiceImpl implements CurrencyService {
