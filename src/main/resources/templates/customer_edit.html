@@ -14,8 +14,9 @@
 <body>
     <div class ="container">
         <div class="row">
-            <div class = "column-6">
+            <div class = "col-lg-4 cold-md-4 col-sm-4 container justify-content-center card">
                 <h1>Müşteri Düzenle</h1>
+                <div class="card-body">
                 <form th:action="@{/customers/update/{id} (id=${id})}" th:object="${editCustomer}" method="POST">
             <div class = "form-group">
                 <input type="hidden" th:field="*{customerId}">
@@ -102,15 +103,18 @@
             </div>
             <br>
             <div class="footer-body">
-                <button type="submit" class="btn btn-dark"> Kaydet </button>
+                <button type="submit" class="btn btn-danger"> Kaydet </button>
+
+                <a th:href="@{/customers}">
+                    <button type="button" class="btn btn-outline-secondary"> Geri Dön </button>
+                </a>
+
             </div>
         </form>
             </div>
-            <div class="column-6">
-                sdgsd
-            </div>
             </div>
     </div>
-
+    </div>
+    </div>
 </body>
 </html>

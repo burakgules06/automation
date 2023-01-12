@@ -3,13 +3,21 @@ package com.guvenpanjur.guvenpanjur.controller;
 
 import com.guvenpanjur.guvenpanjur.controller.util.OfferDataUtil;
 import com.guvenpanjur.guvenpanjur.model.dto.request.RequestCreateOffer;
+import com.guvenpanjur.guvenpanjur.model.dto.request.RequestUpdateCustomer;
+import com.guvenpanjur.guvenpanjur.model.dto.request.RequestUpdateOffer;
+import com.guvenpanjur.guvenpanjur.model.entity.Customer;
+import com.guvenpanjur.guvenpanjur.model.entity.Offer;
 import com.guvenpanjur.guvenpanjur.model.viewmodel.CreateOfferViewModel;
 import com.guvenpanjur.guvenpanjur.service.CustomerService;
 import com.guvenpanjur.guvenpanjur.service.OfferService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 
 @Controller
@@ -67,4 +75,21 @@ public class OfferController {
         offerService.saveOffer(createOffer);
         return "redirect:/offers";
     }
+    @GetMapping("/offers/edit/{id}")
+    public String editOffer(Model model, @PathVariable("id") Long id){
+        Optional<Offer> offer = offerService.getById(id);
+        model.addAttribute("editOffer", offer);
+        return "offer_edit";
+    }
+    @PostMapping("/offers/update/{id}")
+    public String updateOffer(@PathVariable("id") Long id, @Validated RequestUpdateOffer request, BindingResult result, Model model){
+        if(result.hasErrors()){
+            request.setOfferId(id);
+            return "offer_edit";
+        }
+        offerService.updateOffer(id,request);
+        model.addAttribute("editOffer", offerService.findOffers());
+        return "redirect:/offers";
+    }
+
 }

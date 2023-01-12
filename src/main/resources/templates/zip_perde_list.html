@@ -44,18 +44,18 @@
 
 <div class="container">
     <div class = "row">
-        <h1>Sipariş Listesi</h1>
-    </div>
+
+        <h1> Zip Perde Sipariş Listesi</h1>
+
     <table class="table table-striped table-bordered">
         <thead class="table-dark">
         <tr>
             <th>Teklif Numarası</th>
             <th>Ad</th>
             <th>Soyad</th>
-            <th>Ürün Bilgisi</th>
+            <th>Adet</th>
             <th>Durumu</th>
             <th>Durumu</th>
-
         </tr>
         </thead>
         <tbody>
@@ -65,14 +65,18 @@
                 <td>[[${offer.customer.customerName}]]</td>
                 <td>[[${offer.customer.customerLastName}]]</td>
                 <td>[[${offer.unit}]]</td>
-                <td>[[${offer.motordirection}]]</td>
                 <td>[[${offer.offerstatus}]]</td>
+                <td>
+                    <button type="button" class="btn btn-outline-success">Fiyat Teklifi</button>
+                    <button type="button" class="btn btn-outline-danger">İmalat Oluştur</button>
+                </td>
             </tr>
 
         </th:block>
 
         </tbody>
     </table>
+</div>
 </div>
 <div class="col-2">
     <!--User Card-->

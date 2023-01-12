@@ -2,6 +2,7 @@ package com.guvenpanjur.guvenpanjur.service.Impl;
 
 import com.guvenpanjur.guvenpanjur.controller.util.OfferDataUtil;
 import com.guvenpanjur.guvenpanjur.model.dto.request.RequestCreateOffer;
+import com.guvenpanjur.guvenpanjur.model.dto.request.RequestUpdateOffer;
 import com.guvenpanjur.guvenpanjur.model.dto.response.OfferResponse;
 import com.guvenpanjur.guvenpanjur.model.dto.response.ResponseCustomer;
 import com.guvenpanjur.guvenpanjur.model.entity.Customer;
@@ -55,5 +56,20 @@ public class OfferServiceImpl implements OfferService {
         } else {
             throw new RuntimeException("Id Null!");
         }
+    }
+
+    @Override
+    public Optional<Offer> getById(Long id) {
+        return offerRepository.findById(id);
+    }
+
+    @Override
+    public void updateOffer(Long id, RequestUpdateOffer request) {
+        Offer offer = new Offer();
+        offer.setOfferId(request.getOfferId());
+        offer.setUnit(request.getUnit());
+        offer.setWidth(request.getWidth());
+        offer.setHeight(request.getHeight());
+        offerRepository.save(offer);
     }
 }

@@ -72,7 +72,8 @@
                         <td>[[${customer.customerLastName}]]</td>
                         <td>[[${customer.customerTelNo}]]</td>
                         <td>[[${customer.customerCity}]]</td>
-                        <td><a href = "#" th:href="@{/customers/edit/{id} (id=${customer.customerId})}"><btn class="btn btn-warning">Düzenle</btn></a></td>
+                        <td><a href = "#" th:href="@{/customers/edit/{id} (id=${customer.customerId})}"><btn class="btn btn-outline-danger">Düzenle</btn>
+                        </a></td>
                     </tr>
                 </th:block>
             </tbody>
