@@ -12,4 +12,5 @@ public class ResponseCustomer {
     private String customerName;
     private String customerLastName;
     private String customerTelNo;
+
 }

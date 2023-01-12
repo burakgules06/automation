@@ -16,9 +16,9 @@
       <h1>Create New Offer</h1>
       <div class="card-body">
         <form th:action="@{/stocks}" th:object="${stockViewModel}" method="POST">
-          <div class = "form-group">
             <div class="form-group">
-              <label> Ürün Tipi </label>
+              <label> Ürün Tipi:  </label>
+
               <select  th:field="${stockViewModel.productType}"><br/><br/>
                 <option th:each="c : ${productType}" th:value="${c}" th:text="${c}">
                 </option>
@@ -31,7 +31,6 @@
                     th:field = "${stockViewModel.productName}"
                     class="form-control"
             />
-          </div>
           <label>Adet</label>
             <input
                     type="text"
@@ -39,7 +38,7 @@
                     th:field = "${stockViewModel.piece}"
                     class="form-control"
             />
-          </div>
+
           <div class = "form-group">
             <label>Geliş Fiyatı</label>
             <input
@@ -76,37 +75,6 @@
     </div>
 
   </div>
-
-  <table class="table">
-    <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-    </tbody>
-  </table>
 </div>
 </body>
 </html>

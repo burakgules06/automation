@@ -36,7 +36,7 @@
                     <a class="nav-link mx-2" href="#">Sineklik</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mx-2" href="#">Zip Perde</a>
+                    <a class="nav-link mx-2" th:href="@{/zipperde}">Zip Perde</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link mx-2" th:href="@{/stocks}">Stok Kartı</a>
@@ -51,6 +51,7 @@
 <div class="container">
     <div class="row">
         <div class="col-10">
+            <div class = "col-11">
             <!--List Customers-->
             <table class="table table-striped table-bordered">
                 <thead class="table-dark">
@@ -69,14 +70,14 @@
                         <td>[[${offer.offerId}]]</td>
                         <td>[[${offer.customer.customerName}]]</td>
                         <td>[[${offer.customer.customerLastName}]]</td>
-                        <td>[[${offer.unit}]]</td>
+                        <td>[[${offer.productTypeOffer}]]</td>
+                        <td>[[${offer.offerstatus}]]</td>
 
                     </tr>
 
                 </th:block>
                 </tbody>
             </table>
-
         </div>
         <div class="col-2">
             <!--User Card-->
@@ -84,7 +85,13 @@
             <div class="card-body usercardbody">
                 <h6 class="card-title">Kullanıcı Bilgileri</h6>
                 <p class="card-text">Personel İsmi: Burak Güleş</p>
-                <button class="btn btn-outline-danger" style="float: right;">Çıkış yap</button>
+
+                <a class="nav-link mx-2" th:href="@{/login}">
+                    <button class="btn btn-outline-danger" style="float: right;">
+                    Çıkış yap
+                    </button>
+                </a>
+
             </div>
         </div>
             <!--Currency Card-->
@@ -119,6 +126,7 @@
             </div>
         </div>
         </div>
+    </div>
     </div>
 </div>
 <!--

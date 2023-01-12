@@ -17,8 +17,16 @@
       <div class="card-body">
         <form th:action="@{/offers}" th:object="${offerViewModel}" method="POST">
           <div class = "form-group">
+
+            <div class="form-group">
+              <label> Ürün Tipi </label>
+              <select  th:field="${offerViewModel.productTypeOffer}"><br/><br/>
+                <option th:each="c : ${productTypeOffer}" th:value="${c}" th:text="${c}">
+                </option>
+              </select>
+            </div>
             <label>Adet</label>
-           <input type="hidden" th:if="${offerViewModel.customerId!=null}" th:field="${offerViewModel.customerId}">
+            <input type="hidden" th:if="${offerViewModel.customerId!=null}" th:field="${offerViewModel.customerId}">
             <input
                     type="text"
                     name="unit"
@@ -34,6 +42,7 @@
             <option th:each="c : ${motordirections}" th:value="${c}" th:text="${c}">
             </option>
           </select>
+
           </div>
 
           <div class="form-group">
@@ -68,25 +77,6 @@
       </div>
     </div>
     <div class="col-8">
-      <!--
-<div class="form-group">
-<label th:for="motordirection">Kumaş Markası</label>
-<select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="motordirection">
-<option th:each = "motordirection : ${motordirectionList}"
-        th:text="${motordirection}">
-</option>
-</select>
-</div>
-
-<div class="form-group">
-<label th:for="motordirection">Motor Markası</label>
-<select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="motordirection">
-<option th:each = "motordirection : ${motordirectionList}"
-        th:text="${motordirection}">
-</option>
-</select>
-</div>
--->
 
 </div>
 

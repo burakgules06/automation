@@ -19,12 +19,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class StockController {
     private final StockService stockService;
-    static List<String> productType = null;
-    static{
-        productType = new ArrayList<>();
-        productType.add("Zip Perde");
-        productType.add("Sineklik");
-    }
 
     @GetMapping("/stocks")
     public String listStocks(Model model){

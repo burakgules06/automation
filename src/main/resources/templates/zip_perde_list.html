@@ -64,26 +64,13 @@
                 <td>[[${offer.offerId}]]</td>
                 <td>[[${offer.customer.customerName}]]</td>
                 <td>[[${offer.customer.customerLastName}]]</td>
-                <td>[[${offer.productTypeOffer}]]</td>
+                <td>[[${offer.unit}]]</td>
+                <td>[[${offer.motordirection}]]</td>
                 <td>[[${offer.offerstatus}]]</td>
-                <td><a href = "#" >
-                    <btn class="btn btn-warning">Düzenle</btn>
-                </a></td>
-
             </tr>
 
         </th:block>
 
-        <!--
-        Old List Method
-            <tr th:each = "offer: ${offers}">
-            <td th:text="${offer.offerId}"></td>
-            <td th:text="${offer.customer.customerName}"></td>
-            <td th:text="${offer.customer.customerLastName}"></td>
-            <td th:text="${offer.unit}"></td>
-            <td th:text="${offer.motordirection}"></td>
-        </tr>
-        -->
         </tbody>
     </table>
 </div>

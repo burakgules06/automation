@@ -11,8 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -20,26 +18,19 @@ public class OfferController {
     private final OfferService offerService;
     private final CustomerService customerService;
     //dropdown list
-    static List<String> motordirectionList = null;
-    static List<String> offerstatus = null;
-    static {
-        motordirectionList = new ArrayList<>();
-        motordirectionList.add("Sağ");
-        motordirectionList.add("Sol");
-    }
 
-    static {
-        offerstatus = new ArrayList<>();
-        offerstatus.add("Fabrikada");
-        offerstatus.add("Teslim Edildi");
-    }
     @GetMapping("/offers")
     public String listOffers(Model model){
         model.addAttribute("offers", offerService.findOffers());
         model.addAttribute("customers", customerService.findCustomers());
         return "offers";
     }
-
+    @GetMapping("/zipperde")
+    public String listZipPerde(Model model){
+        model.addAttribute("offers", offerService.findOffers());
+        model.addAttribute("customers",customerService.findCustomers());
+        return "zip_perde_list";
+    }
     @GetMapping("/offers/new")
     public String createOffer(Model model,@RequestParam(value = "customerId",required = false)Long customerId){
         CreateOfferViewModel offerViewModel=new CreateOfferViewModel();
@@ -55,6 +46,7 @@ public class OfferController {
         }
         model.addAttribute("motordirections", OfferDataUtil.motordirectionList);
         model.addAttribute("offerstatus", OfferDataUtil.offerstatus);
+        model.addAttribute("productTypeOffer",OfferDataUtil.productTypeOffer);
         model.addAttribute("offerViewModel",offerViewModel);
         return "create_offer";
     }
@@ -67,6 +59,7 @@ public class OfferController {
         createOffer.setWidth(offer.getWidth());
         createOffer.setMotordirection(offer.getMotordirection());
         createOffer.setOfferstatus(offer.getOfferstatus());
+        createOffer.setProductTypeOffer(offer.getProductTypeOffer());
         createOffer.setCustomerId(offer.getCustomerId());
         createOffer.setKumasBoyKesimOlcusu(offer.getWidth() - 63);
         createOffer.setKumasEnKesimOlcusu(offer.getHeight() + 100);

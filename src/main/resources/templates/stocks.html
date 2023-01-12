@@ -33,7 +33,7 @@
                     <a class="nav-link mx-2" href="#">Sineklik</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mx-2" href="#">Zip Perde</a>
+                    <a class="nav-link mx-2" th:href="@{/zipperde}">Zip Perde</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link mx-2" th:href="@{/stocks}">Stok Kartı</a>
@@ -78,5 +78,22 @@
         </tbody>
     </table>
 </div>
+<div class="col-2">
+    <!--User Card-->
+    <div class="card shadow p-3 mb-5 bg-white rounded usercard">
+        <div class="card-body usercardbody">
+            <h6 class="card-title">Kullanıcı Bilgileri</h6>
+            <p class="card-text">Personel İsmi: Burak Güleş</p>
+
+            <a class="nav-link mx-2" th:href="@{/login}">
+                <button class="btn btn-outline-danger" style="float: right;">
+                    Çıkış yap
+                </button>
+            </a>
+
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

@@ -19,6 +19,7 @@ public class OfferResponse {
     private int unit;
     private String motordirection;
     private String offerstatus;
+    private String productTypeOffer;
     private Long customersId;
     private ResponseCustomer customer;
 

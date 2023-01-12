@@ -47,6 +47,7 @@ public class OfferServiceImpl implements OfferService {
             offer.setCustomers(customer.get());
             offer.setMotordirection(request.getMotordirection());
             offer.setOfferstatus(request.getOfferstatus());
+            offer.setProductTypeOffer(request.getProductTypeOffer());
             offer.setKumasBoyKesimOlcusu(request.getKumasBoyKesimOlcusu());
             offer.setKumasEnKesimOlcusu(request.getKumasEnKesimOlcusu());
             offer.setKumasSonFiyat(request.getKumasSonFiyat());

@@ -30,6 +30,7 @@ public class Offer {
     @OneToOne
     @JoinColumn(name = "customer_id")
     private Customer customers;
+    private String productTypeOffer;
 
 
 }
