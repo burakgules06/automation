@@ -32,6 +32,10 @@ public class IndexController {
         model.addAttribute("customers", customerService.findCustomers());
         return "index";
     }
+    @GetMapping("/sineklik")
+    public String sineklikSayfasi(){
+        return "sineklik";
+    }
     /**
      @GetMapping("/")
      public String listCustomers(Model model){

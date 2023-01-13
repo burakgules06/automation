@@ -13,8 +13,6 @@ public interface OfferService {
     List<OfferResponse> findOffers();
     void saveOffer(RequestCreateOffer request);
 
-    Optional<Offer> getById(Long id);
-    void updateOffer(Long id, RequestUpdateOffer request);
 
 
 }

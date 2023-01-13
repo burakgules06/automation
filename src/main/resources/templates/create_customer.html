@@ -14,7 +14,7 @@
         <div class="card-body">
           <form th:action="@{/customers}" th:object="${customerViewModel}" method="POST">
             <div class = "form-group">
-              <label>Customer Name</label>
+              <label>Müşteri Adı</label>
               <input
                type="text"
                name="customerName"
@@ -24,7 +24,7 @@
               />
             </div>
             <div class = "form-group">
-              <label>Customer Last Name</label>
+              <label>Müşteri Soyad</label>
               <input
                type="text"
                name="customerLastName"
@@ -33,7 +33,7 @@
               />
             </div>
             <div class = "form-group">
-              <label>Customer Number</label>
+              <label>Müşteri Telefon Numarası</label>
               <input
                type="text"
                name="customerTelno"

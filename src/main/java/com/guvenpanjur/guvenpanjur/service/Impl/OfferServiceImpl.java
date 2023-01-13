@@ -57,19 +57,4 @@ public class OfferServiceImpl implements OfferService {
             throw new RuntimeException("Id Null!");
         }
     }
-
-    @Override
-    public Optional<Offer> getById(Long id) {
-        return offerRepository.findById(id);
-    }
-
-    @Override
-    public void updateOffer(Long id, RequestUpdateOffer request) {
-        Offer offer = new Offer();
-        offer.setOfferId(request.getOfferId());
-        offer.setUnit(request.getUnit());
-        offer.setWidth(request.getWidth());
-        offer.setHeight(request.getHeight());
-        offerRepository.save(offer);
-    }
 }
