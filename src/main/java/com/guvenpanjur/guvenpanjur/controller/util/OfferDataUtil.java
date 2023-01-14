@@ -10,4 +10,5 @@ public class OfferDataUtil {
     public static List<String> motordirectionList = Arrays.asList("Sol","Sağ");
     public static List<String> offerstatus = Arrays.asList("Teslim Edildi","Fabrikada");
     public static List<String> productTypeOffer = Arrays.asList("Zip Perde", "Sineklik");
+    public static List<String> fabricBrand = Arrays.asList("Ferrari", "Copaco");
 }

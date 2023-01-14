@@ -12,12 +12,13 @@
 <body>
 <div class = "container">
   <div class="row">
-    <div class = "col-lg-4 cold-md-4 col-sm-4 container justify-content-center card">
-      <h1>Create New Offer</h1>
+    <h1>Teklif Oluştur</h1>
+    <hr>
+    <div class = "col container card">
       <div class="card-body">
         <form th:action="@{/offers}" th:object="${offerViewModel}" method="POST">
+          <div class="col-lg-4 cold-md-4 col-sm-4">
           <div class = "form-group">
-
             <div class="form-group">
               <label> Ürün Tipi </label>
               <select  th:field="${offerViewModel.productTypeOffer}"><br/><br/>
@@ -25,58 +26,68 @@
                 </option>
               </select>
             </div>
-            <label>Adet</label>
             <input type="hidden" th:if="${offerViewModel.customerId!=null}" th:field="${offerViewModel.customerId}">
-            <input
-                    type="text"
-                    name="unit"
-                    th:field = "${offerViewModel.unit}"
-                    class="form-control"
-            />
           </div>
-
-          <br>
-          <div class="form-group">
-            <label> Motor Yönü </label>
-            <select  th:field="${offerViewModel.motordirection}"><br/><br/>
-            <option th:each="c : ${motordirections}" th:value="${c}" th:text="${c}">
-            </option>
-          </select>
-          </div>
-          <br>
+          <table class="table">
+            <thead>
+            <tr>
+              <th scope="col">Poz</th>
+              <th scope="col">Adet</th>
+              <th scope="col">En</th>
+              <th scope="col">Boy</th>
+              <th scope="col">Motor Yönü</th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td><input
+                        type="text"
+                        name="unit"
+                        th:field = "${offerViewModel.unit}"
+                        class="form-control"
+                /></td>
+                <td><input
+                        type="text"
+                        name="width"
+                        th:field = "${offerViewModel.width}"
+                        class="form-control"
+                /></td>
+                <td><input
+                        type="text"
+                        name="height"
+                        th:field = "${offerViewModel.height}"
+                        class="form-control"
+                /></td>
+                <td><select th:field="${offerViewModel.motordirection}"><br/><br/>
+                  <option th:each="c : ${motordirections}" th:value="${c}" th:text="${c}">
+                  </option>
+                </select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
           <div class="form-group" style="display: none">
             <select  th:field="${offerViewModel.offerstatus}">
               <option th:value="${offerstatus[1]}"></option>
             </select>
           </div>
-
-
-          <div class = "form-group">
-            <label>Yükseklik</label>
+          </div>
+          <div class="col-lg-8">
+            <title>Kumanda</title>
             <input
                     type="text"
-                    name="height"
-                    th:field = "${offerViewModel.height}"
+                    name="unit"
+                    th:field = "${offerViewModel.engineControl}"
                     class="form-control"
             />
           </div>
-          <div class = "form-group">
-            <label>Genişlik</label>
-            <input
-                    type="text"
-                    name="width"
-                    th:field = "${offerViewModel.width}"
-                    class="form-control"
-            />
-          </div>
-          <br>
           <div class="footer-body">
             <button type="submit" class="btn btn-outline-danger"> Maliyeti Gör </button>
           </div>
         </form>
       </div>
     </div>
-
 
 </div>
 </div>

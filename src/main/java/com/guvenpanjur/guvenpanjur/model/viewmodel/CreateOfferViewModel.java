@@ -10,5 +10,6 @@ public class CreateOfferViewModel {
     private String motordirection;
     private String offerstatus;
     private String productTypeOffer;
+    private String engineControl;
     private Long customerId;
 }

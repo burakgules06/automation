@@ -32,9 +32,21 @@ public class IndexController {
         model.addAttribute("customers", customerService.findCustomers());
         return "index";
     }
+    @GetMapping("/login")
+    public String showLoginPage(){
+        return "login";
+    }
     @GetMapping("/sineklik")
     public String sineklikSayfasi(){
         return "sineklik";
+    }
+    @GetMapping("/offerpage")
+    public String showOffer(){
+        return "offerpage";
+    }
+    @GetMapping("/offerDetails")
+    public String offerDetails(){
+        return "offerdetails";
     }
     /**
      @GetMapping("/")

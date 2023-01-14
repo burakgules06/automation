@@ -27,6 +27,7 @@ public class Offer {
     private double kumasSonFiyat;
     private String motordirection;
     private String offerstatus;
+    private String engineControl;
     @OneToOne
     @JoinColumn(name = "customer_id")
     private Customer customers;

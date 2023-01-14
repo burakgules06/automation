@@ -13,6 +13,7 @@ import com.guvenpanjur.guvenpanjur.service.OfferService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -68,12 +69,19 @@ public class OfferController {
         createOffer.setMotordirection(offer.getMotordirection());
         createOffer.setOfferstatus(offer.getOfferstatus());
         createOffer.setProductTypeOffer(offer.getProductTypeOffer());
+        createOffer.setEngineControl(offer.getEngineControl());
         createOffer.setCustomerId(offer.getCustomerId());
         createOffer.setKumasBoyKesimOlcusu(offer.getWidth() - 63);
         createOffer.setKumasEnKesimOlcusu(offer.getHeight() + 100);
         createOffer.setKumasSonFiyat(createOffer.getKumasEnKesimOlcusu()*createOffer.getKumasBoyKesimOlcusu()* createOffer.getKumasBirimFiyat());
         offerService.saveOffer(createOffer);
         return "redirect:/offers";
+    }
+
+    @GetMapping("/selectcustomers")
+    public String selectCustomer(ModelMap model){
+        model.addAttribute("customers", customerService.findCustomers());
+        return "select_customer";
     }
 
 }
