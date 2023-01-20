@@ -2,11 +2,15 @@ package com.guvenpanjur.guvenpanjur.service.Impl;
 
 import com.guvenpanjur.guvenpanjur.model.dto.request.RequestCreateCustomer;
 import com.guvenpanjur.guvenpanjur.model.dto.request.RequestUpdateCustomer;
+import com.guvenpanjur.guvenpanjur.model.dto.response.ResponseCustomer;
 import com.guvenpanjur.guvenpanjur.model.entity.Customer;
 import com.guvenpanjur.guvenpanjur.repository.CustomerRepository;
 import com.guvenpanjur.guvenpanjur.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +22,13 @@ public class CustomerServiceImpl implements CustomerService
 {
     private final ModelMapper modelMapper;
     private final CustomerRepository customerRepository;
+
+
+    @Override
+    public Page<Customer> findPaginated(int currentPage, int size) {
+        Pageable pageable = PageRequest.of(currentPage,size);
+        return customerRepository.findAll(pageable);
+    }
 
     @Override
     public List<Customer> findCustomers() {

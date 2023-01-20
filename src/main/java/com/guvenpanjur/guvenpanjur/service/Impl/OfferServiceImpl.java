@@ -12,6 +12,9 @@ import com.guvenpanjur.guvenpanjur.service.CustomerService;
 import com.guvenpanjur.guvenpanjur.service.OfferService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +27,18 @@ public class OfferServiceImpl implements OfferService {
     private final OfferRepository offerRepository;
     private final ModelMapper modelMapper;
     private final CustomerService customerService;
+
+    @Override
+    public Page<OfferResponse> findOfferPaginated(int currentPage, int size) {
+        Pageable pageable = PageRequest.of(currentPage,size);
+        var res = offerRepository.findAll(pageable).map(offer -> {
+            var resoffer = modelMapper.map(offer,OfferResponse.class);
+            var resCustomer = modelMapper.map(offer.getCustomers(), ResponseCustomer.class);
+            resoffer.setCustomer(resCustomer);
+            return resoffer;
+        });
+        return res;
+    }
 
     @Override
     public List<OfferResponse> findOffers() {

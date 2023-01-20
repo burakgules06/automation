@@ -21,7 +21,7 @@
                     <a class="nav-link mx-2" th:href="@{/offers}">Siparişler</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mx-2" th:href="@{/customers}">Müşteriler</a>
+                    <a class="nav-link mx-2" th:href="@{/customers/0}">Müşteriler</a>
                 </li>
                 <li>
                     <img src="../static/images/logo.png" th:src="@{images/logo.png}" height="80" style="padding-bottom: 0.1%" />
@@ -66,8 +66,7 @@
                 </tr>
             </thead>
             <tbody>
-                <th:block th:each="customer : ${customers}">
-                    <tr>
+                    <tr th:each="customer : ${customers}" >
                         <td>[[${customer.customerId}]]</td>
                         <td>[[${customer.customerName}]]</td>
                         <td>[[${customer.customerLastName}]]</td>
@@ -80,21 +79,22 @@
             </tbody>
         </table>
       </div>
-<div class="col-2">
-    <!--User Card-->
-    <div class="card shadow p-3 mb-5 bg-white rounded usercard">
-        <div class="card-body usercardbody">
-            <h6 class="card-title">Kullanıcı Bilgileri</h6>
-            <p class="card-text">Personel İsmi: Burak Güleş</p>
-
-            <a class="nav-link mx-2" th:href="@{/login}">
-                <button class="btn btn-outline-danger" style="float: right;">
-                    Çıkış yap
-                </button>
-            </a>
-
-        </div>
+    <div class="container">
+        <p>Toplam Müşteri Sayısı : [[${totalItem}]]</p>
+        <nav aria-label="...">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" th:if="${currentPage != 0}" tabindex="-1" th:href="@{'/customers/' +${currentPage-1}}">Geri</a>
+                </li>
+                <li th:each="i:${#numbers.sequence(1,totalPages)}" th:classappend="${currentPage==i-1 ? 'active' : ''}" class="page-item">
+                    <a class="page-link" th:href="@{'/customers/'+${i-1}}">[[${i}]] </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" th:if="${currentPage+1!=totalPages}" th:href="@{'/customers/' +${currentPage+1}}">İleri</a>
+                </li>
+            </ul>
+        </nav>
     </div>
-</div>
+
 </body>
 </html>

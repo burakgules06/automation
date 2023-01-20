@@ -5,12 +5,14 @@ import com.guvenpanjur.guvenpanjur.controller.util.OfferDataUtil;
 import com.guvenpanjur.guvenpanjur.model.dto.request.RequestCreateOffer;
 import com.guvenpanjur.guvenpanjur.model.dto.request.RequestUpdateCustomer;
 import com.guvenpanjur.guvenpanjur.model.dto.request.RequestUpdateOffer;
+import com.guvenpanjur.guvenpanjur.model.dto.response.OfferResponse;
 import com.guvenpanjur.guvenpanjur.model.entity.Customer;
 import com.guvenpanjur.guvenpanjur.model.entity.Offer;
 import com.guvenpanjur.guvenpanjur.model.viewmodel.CreateOfferViewModel;
 import com.guvenpanjur.guvenpanjur.service.CustomerService;
 import com.guvenpanjur.guvenpanjur.service.OfferService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -28,12 +30,16 @@ public class OfferController {
     private final CustomerService customerService;
     //dropdown list
 
-    @GetMapping("/offers")
-    public String listOffers(Model model){
-        model.addAttribute("offers", offerService.findOffers());
-        model.addAttribute("customers", customerService.findCustomers());
+    @GetMapping("/offers/{pageno}")
+    public String listOffers(@PathVariable int pageno,Model model){
+        Page<OfferResponse> offers = offerService.findOfferPaginated(pageno,2);
+        model.addAttribute("offers", offers);
+        model.addAttribute("currentPage", pageno);
+        model.addAttribute("totalPages", offers.getTotalPages());
+        model.addAttribute("totalItem",offers.getTotalElements());
         return "offers";
     }
+
     @GetMapping("/zipperde")
     public String listZipPerde(Model model){
         model.addAttribute("offers", offerService.findOffers());

@@ -26,12 +26,14 @@ public class IndexController {
     private final CustomerService customerService;
     private final OfferService offerService;
 
+    /**
     @GetMapping("/")
     public String listOffers(Model model){
         model.addAttribute("offers", offerService.findOffers());
         model.addAttribute("customers", customerService.findCustomers());
         return "index";
     }
+     */
     @GetMapping("/login")
     public String showLoginPage(){
         return "login";

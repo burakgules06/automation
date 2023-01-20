@@ -11,110 +11,110 @@
 
     <title>Customer Edit</title>
 </head>
-<body>
-    <div class ="container">
-        <div class="row">
-            <div class = "col-lg-4 cold-md-4 col-sm-4 container justify-content-center card">
-                <h1>Müşteri Düzenle</h1>
-                <div class="card-body">
-                <form th:action="@{/customers/update/{id} (id=${id})}" th:object="${editCustomer}" method="POST">
-            <div class = "form-group">
-                <input type="hidden" th:field="*{customerId}">
-                <label>Customer Name</label>
-                <input
-                        type="text"
-                        name="customerName"
-                        th:field = "*{customerName}"
-                        class="form-control"
-                        required
-                />
-            </div>
-            <div class = "form-group">
-                <label>Customer Last Name</label>
-                <input
-                        type="text"
-                        name="customerLastName"
-                        th:field = "*{customerLastName}"
-                        class="form-control"
-                />
-            </div>
-            <div class = "form-group">
-                <label>Customer Number</label>
-                <input
-                        type="text"
-                        name="customerTelno"
-                        th:field = "*{customerTelNo}"
-                        class="form-control"
-                />
-            </div>
-            <div class = "form-group">
-                <label>İl</label>
-                <input
-                        type="text"
-                        name="customerCity"
-                        th:field = "*{customerCity}"
-                        class="form-control"
-                />
-            </div>
-            <div class = "form-group">
-                <label>İlçe</label>
-                <input
-                        type="text"
-                        name="customerDistrict"
-                        th:field = "*{customerDistrict}"
-                        class="form-control"
-                />
-            </div>
-            <div class = "form-group">
-                <label>Mahalle</label>
-                <input
-                        type="text"
-                        name="customerNeighbourhood"
-                        th:field = "*{customerNeighbourhood}"
-                        class="form-control"
-                />
-            </div>
-            <div class = "form-group">
-                <label>Cadde/sokak</label>
-                <input
-                        type="text"
-                        name="customerStreet"
-                        th:field = "*{customerStreet}"
-                        class="form-control"
-                />
-            </div>
-            <div class = "form-group">
-                <label>Bina No</label>
-                <input
-                        type="text"
-                        name="customerBuildingNo"
-                        th:field = "*{customerBuildingNo}"
-                        class="form-control"
-                />
-            </div>
-            <div class = "form-group">
-                <label>Daire No</label>
-                <input
-                        type="text"
-                        name="customerNo"
-                        th:field = "*{customerNo}"
-                        class="form-control"
-                />
-            </div>
-            <br>
-            <div class="footer-body">
-                <button type="submit" class="btn btn-danger"> Kaydet </button>
+    <body>
+        <div class ="container">
+            <div class="row">
+                <div class = "col-lg-4 cold-md-4 col-sm-4 container justify-content-center card">
+                    <h1>Müşteri Düzenle</h1>
+                    <div class="card-body">
+                    <form th:action="@{/customers/update/{id} (id=${id})}" th:object="${editCustomer}" method="POST">
+                <div class = "form-group">
+                    <input type="hidden" th:field="*{customerId}">
+                    <label>Customer Name</label>
+                    <input
+                            type="text"
+                            name="customerName"
+                            th:field = "*{customerName}"
+                            class="form-control"
+                            required
+                    />
+                </div>
+                <div class = "form-group">
+                    <label>Customer Last Name</label>
+                    <input
+                            type="text"
+                            name="customerLastName"
+                            th:field = "*{customerLastName}"
+                            class="form-control"
+                    />
+                </div>
+                <div class = "form-group">
+                    <label>Customer Number</label>
+                    <input
+                            type="text"
+                            name="customerTelno"
+                            th:field = "*{customerTelNo}"
+                            class="form-control"
+                    />
+                </div>
+                <div class = "form-group">
+                    <label>İl</label>
+                    <input
+                            type="text"
+                            name="customerCity"
+                            th:field = "*{customerCity}"
+                            class="form-control"
+                    />
+                </div>
+                <div class = "form-group">
+                    <label>İlçe</label>
+                    <input
+                            type="text"
+                            name="customerDistrict"
+                            th:field = "*{customerDistrict}"
+                            class="form-control"
+                    />
+                </div>
+                <div class = "form-group">
+                    <label>Mahalle</label>
+                    <input
+                            type="text"
+                            name="customerNeighbourhood"
+                            th:field = "*{customerNeighbourhood}"
+                            class="form-control"
+                    />
+                </div>
+                <div class = "form-group">
+                    <label>Cadde/sokak</label>
+                    <input
+                            type="text"
+                            name="customerStreet"
+                            th:field = "*{customerStreet}"
+                            class="form-control"
+                    />
+                </div>
+                <div class = "form-group">
+                    <label>Bina No</label>
+                    <input
+                            type="text"
+                            name="customerBuildingNo"
+                            th:field = "*{customerBuildingNo}"
+                            class="form-control"
+                    />
+                </div>
+                <div class = "form-group">
+                    <label>Daire No</label>
+                    <input
+                            type="text"
+                            name="customerNo"
+                            th:field = "*{customerNo}"
+                            class="form-control"
+                    />
+                </div>
+                <br>
+                <div class="footer-body">
+                    <button type="submit" class="btn btn-danger"> Kaydet </button>
 
-                <a th:href="@{/customers}">
-                    <button type="button" class="btn btn-outline-secondary"> Geri Dön </button>
-                </a>
+                    <a th:href="@{/customers}">
+                        <button type="button" class="btn btn-outline-secondary"> Geri Dön </button>
+                    </a>
 
+                </div>
+            </form>
+                </div>
+                </div>
             </div>
-        </form>
             </div>
-            </div>
-    </div>
-    </div>
-    </div>
-</body>
+        </div>
+    </body>
 </html>

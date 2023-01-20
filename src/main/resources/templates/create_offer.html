@@ -9,87 +9,86 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
 
 </head>
-<body>
-<div class = "container">
-  <div class="row">
-    <h1>Teklif Oluştur</h1>
-    <hr>
-    <div class = "col container card">
-      <div class="card-body">
-        <form th:action="@{/offers}" th:object="${offerViewModel}" method="POST">
-          <div class="col-lg-4 cold-md-4 col-sm-4">
-          <div class = "form-group">
-            <div class="form-group">
-              <label> Ürün Tipi </label>
-              <select  th:field="${offerViewModel.productTypeOffer}"><br/><br/>
-                <option th:each="c : ${productTypeOffer}" th:value="${c}" th:text="${c}">
-                </option>
-              </select>
-            </div>
-            <input type="hidden" th:if="${offerViewModel.customerId!=null}" th:field="${offerViewModel.customerId}">
-          </div>
-          <table class="table">
-            <thead>
-            <tr>
-              <th scope="col">Poz</th>
-              <th scope="col">Adet</th>
-              <th scope="col">En</th>
-              <th scope="col">Boy</th>
-              <th scope="col">Motor Yönü</th>
-            </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td><input
+  <body>
+    <div class = "container">
+      <div class="row">
+        <h1>Teklif Oluştur</h1>
+        <hr>
+        <div class = "col container card">
+          <div class="card-body">
+            <form th:action="@{/offers}" th:object="${offerViewModel}" method="POST">
+              <div class="col-lg-4 cold-md-4 col-sm-4">
+                <div class = "form-group">
+                  <div class="form-group">
+                    <label> Ürün Tipi </label>
+                    <select  th:field="${offerViewModel.productTypeOffer}"><br/><br/>
+                      <option th:each="c : ${productTypeOffer}" th:value="${c}" th:text="${c}">
+                      </option>
+                    </select>
+                  </div>
+                  <input type="hidden" th:if="${offerViewModel.customerId!=null}" th:field="${offerViewModel.customerId}">
+                </div>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Poz</th>
+                      <th scope="col">Adet</th>
+                      <th scope="col">En</th>
+                      <th scope="col">Boy</th>
+                      <th scope="col">Motor Yönü</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td><input
+                              type="text"
+                              name="unit"
+                              th:field = "${offerViewModel.unit}"
+                              class="form-control"
+                      /></td>
+                      <td><input
+                              type="text"
+                              name="width"
+                              th:field = "${offerViewModel.width}"
+                              class="form-control"
+                      /></td>
+                      <td><input
+                              type="text"
+                              name="height"
+                              th:field = "${offerViewModel.height}"
+                              class="form-control"
+                      /></td>
+                      <td><select th:field="${offerViewModel.motordirection}"><br/><br/>
+                        <option th:each="c : ${motordirections}" th:value="${c}" th:text="${c}">
+                        </option>
+                      </select>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              <div class="form-group" style="display: none">
+                <select  th:field="${offerViewModel.offerstatus}">
+                  <option th:value="${offerstatus[1]}"></option>
+                </select>
+              </div>
+              </div>
+              <div class="col-lg-8">
+                <title>Kumanda</title>
+                <input
                         type="text"
                         name="unit"
-                        th:field = "${offerViewModel.unit}"
+                        th:field = "${offerViewModel.engineControl}"
                         class="form-control"
-                /></td>
-                <td><input
-                        type="text"
-                        name="width"
-                        th:field = "${offerViewModel.width}"
-                        class="form-control"
-                /></td>
-                <td><input
-                        type="text"
-                        name="height"
-                        th:field = "${offerViewModel.height}"
-                        class="form-control"
-                /></td>
-                <td><select th:field="${offerViewModel.motordirection}"><br/><br/>
-                  <option th:each="c : ${motordirections}" th:value="${c}" th:text="${c}">
-                  </option>
-                </select>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="form-group" style="display: none">
-            <select  th:field="${offerViewModel.offerstatus}">
-              <option th:value="${offerstatus[1]}"></option>
-            </select>
+                />
+              </div>
+              <div class="footer-body">
+                <button type="submit" class="btn btn-outline-danger"> Maliyeti Gör </button>
+              </div>
+            </form>
           </div>
-          </div>
-          <div class="col-lg-8">
-            <title>Kumanda</title>
-            <input
-                    type="text"
-                    name="unit"
-                    th:field = "${offerViewModel.engineControl}"
-                    class="form-control"
-            />
-          </div>
-          <div class="footer-body">
-            <button type="submit" class="btn btn-outline-danger"> Maliyeti Gör </button>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
-
-</div>
-</div>
-</body>
+  </body>
 </html>

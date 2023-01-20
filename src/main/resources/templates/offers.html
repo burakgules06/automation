@@ -21,7 +21,7 @@
                     <a class="nav-link mx-2" th:href="@{/offers}">Siparişler</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mx-2" th:href="@{/customers}">Müşteriler</a>
+                    <a class="nav-link mx-2" th:href="@{/customers/0}">Müşteriler</a>
                 </li>
                 <li>
                     <img src="../static/images/logo.png" th:src="@{images/logo.png}" height="80" style="padding-bottom: 0.1%" />
@@ -63,30 +63,14 @@
         </tr>
         </thead>
         <tbody>
-        <th:block th:each="offer : ${offers}">
-            <tr>
-                <td>[[${offer.offerId}]]</td>
-                <td>[[${offer.customer.customerName}]]</td>
-                <td>[[${offer.customer.customerLastName}]]</td>
-                <td>[[${offer.productTypeOffer}]]</td>
-                <td>[[${offer.offerstatus}]]</td>
+            <tr th:each="offer : ${offers}">
+                <td th:text="${offer.offerId}"></td>
+                <td th:text="${offer.customer.customerName}"></td>
+                <td th:text="${offer.customer.customerLastName}"></td>
+                <td th:text="${offer.productTypeOffer}"></td>
+                <td th:text="${offer.offerstatus}"></td>
                 <td><button type="button" class="btn btn-outline-danger" th:onclick="showAlert()">Düzenle</button></td>
-
-
             </tr>
-
-        </th:block>
-
-        <!--
-        Old List Method
-            <tr th:each = "offer: ${offers}">
-            <td th:text="${offer.offerId}"></td>
-            <td th:text="${offer.customer.customerName}"></td>
-            <td th:text="${offer.customer.customerLastName}"></td>
-            <td th:text="${offer.unit}"></td>
-            <td th:text="${offer.motordirection}"></td>
-        </tr>
-        -->
         </tbody>
     </table>
 </div>
@@ -107,7 +91,22 @@
     </div>
 </div>
 </div>
-
+<div class="container">
+    <p>Toplam Müşteri Sayısı : [[${totalItem}]]</p>
+    <nav aria-label="...">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" th:if="${currentPage != 0}" tabindex="-1" th:href="@{'/offers/' +${currentPage-1}}">Geri</a>
+            </li>
+            <li th:each="i:${#numbers.sequence(1,totalPages)}" th:classappend="${currentPage==i-1 ? 'active' : ''}" class="page-item">
+                <a class="page-link" th:href="@{'/offers/'+${i-1}}">[[${i}]] </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" th:if="${currentPage+1!=totalPages}" th:href="@{'/offers/' +${currentPage+1}}">İleri</a>
+            </li>
+        </ul>
+    </nav>
+</div>
 
 </body>
 </html>

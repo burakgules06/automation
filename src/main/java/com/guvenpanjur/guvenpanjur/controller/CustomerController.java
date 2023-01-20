@@ -7,6 +7,8 @@ import com.guvenpanjur.guvenpanjur.model.viewmodel.CreateCustomerViewModel;
 import com.guvenpanjur.guvenpanjur.repository.CustomerRepository;
 import com.guvenpanjur.guvenpanjur.service.CustomerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -21,14 +23,27 @@ import java.util.Optional;
 @Controller
 @RequiredArgsConstructor
 public class CustomerController {
+    @Autowired
     private final CustomerService customerService;
-    private final CustomerRepository customerRepository;
 
+    //list customer
+    @GetMapping("/customers/{pageno}")
+    public String findPaginated(@PathVariable int pageno, Model model){
+        Page<Customer>  customers = customerService.findPaginated(pageno,25);
+        model.addAttribute("customers",customers);
+        model.addAttribute("currentPage",pageno);
+        model.addAttribute("totalPages",customers.getTotalPages());
+        model.addAttribute("totalItem",customers.getTotalElements());
+        return "customers";
+    }
+    /**
     @GetMapping("/customers")
     public String listCustomers(ModelMap model){
        model.addAttribute("customers", customerService.findCustomers());
        return "customers";
     }
+    */
+    //create customer
     @GetMapping("/customers/new")
     public String createCustomer(Model model){
         CreateCustomerViewModel customerViewModel = new CreateCustomerViewModel();
@@ -55,6 +70,7 @@ public class CustomerController {
         return "redirect:/offers/new";
     }
 
+    //edit customer
     @GetMapping("/customers/edit/{id}")
     public String editCustomer(Model model, @PathVariable("id") Long id){
         Optional<Customer> customer = customerService.getById(id);

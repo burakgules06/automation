@@ -1,9 +1,11 @@
 package com.guvenpanjur.guvenpanjur.model.dto.response;
 
+import com.guvenpanjur.guvenpanjur.model.entity.Customer;
 import com.guvenpanjur.guvenpanjur.model.entity.Offer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,5 +24,4 @@ public class OfferResponse {
     private String productTypeOffer;
     private Long customersId;
     private ResponseCustomer customer;
-
 }
