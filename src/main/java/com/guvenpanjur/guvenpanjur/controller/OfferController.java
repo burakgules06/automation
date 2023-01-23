@@ -81,7 +81,7 @@ public class OfferController {
         createOffer.setKumasEnKesimOlcusu(offer.getHeight() + 100);
         createOffer.setKumasSonFiyat(createOffer.getKumasEnKesimOlcusu()*createOffer.getKumasBoyKesimOlcusu()* createOffer.getKumasBirimFiyat());
         offerService.saveOffer(createOffer);
-        return "redirect:/offers";
+        return "redirect:/offers/0";
     }
 
     @GetMapping("/selectcustomers")

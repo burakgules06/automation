@@ -48,7 +48,6 @@ public class OfferServiceImpl implements OfferService {
                     var resCustomer=modelMapper.map(offer.getCustomers(),ResponseCustomer.class);
                     res.setCustomer(resCustomer);
                     return res;
-
                 })
                 .collect(Collectors.toList());
     }

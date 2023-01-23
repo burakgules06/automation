@@ -85,7 +85,7 @@ public class CustomerController {
         }
         customerService.updateCustomer(id,request);
         model.addAttribute("editCustomer", customerService.findCustomers());
-        return "redirect:/customers";
+        return "redirect:/customers/0";
     }
 
     /**
