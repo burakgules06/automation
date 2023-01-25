@@ -20,8 +20,7 @@ public class Offer {
     private long offerId;
     private double width;
     private double height;
-    @ElementCollection
-    private List<Integer> unit;
+    private int unit;
     private double kumasEnKesimOlcusu;
     private double kumasBoyKesimOlcusu;
     private double kumasBirimFiyat;

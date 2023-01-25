@@ -68,10 +68,9 @@ public class OfferController {
     @PostMapping("/offers")
     public String saveOffer(@ModelAttribute("offerViewModel") CreateOfferViewModel offer){
         RequestCreateOffer createOffer=new RequestCreateOffer();
-
         createOffer.setUnit(offer.getUnit());
-        createOffer.setHeight(offer.getHeight());
         createOffer.setWidth(offer.getWidth());
+        createOffer.setHeight(offer.getHeight());
         createOffer.setMotordirection(offer.getMotordirection());
         createOffer.setOfferstatus(offer.getOfferstatus());
         createOffer.setProductTypeOffer(offer.getProductTypeOffer());

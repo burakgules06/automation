@@ -5,9 +5,10 @@
   <title>Offers</title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
-  <script type="text/javascript" href="../static/js/actions.js" th:src="@{/js/actions.js}"></script>
+  <script type="text/javascript" src="../static/js/actions.js" th:src="@{/js/actions.js}"></script>
 </head>
   <body>
+
     <div class = "container">
       <div class="row">
         <h1>Teklif Oluştur</h1>
@@ -35,37 +36,16 @@
                       <th scope="col">Boy</th>
                       <th scope="col">Motor Yönü</th>
                       <th>
-                        <button type="button" class="btn-success" onclick="create_tr('table_body')">Poz Ekle</button>
+                        <button type="button" class="btn-success" th:onclick="addColumn()">Poz Ekle</button>
                       </th>
                     </tr>
                   </thead>
                   <tbody id="table_body">
                     <tr>
-                      <td>1</td>
-                      <td><input
-                              type="text"
-                              name="unit"
-                              th:field = "${offerViewModel.unit}"
-                              class="form-control"
-                      /></td>
-                      <td><input
-                              type="text"
-                              name="width"
-                              th:field = "${offerViewModel.width}"
-                              class="form-control"
-                      /></td>
-                      <td><input
-                              type="text"
-                              name="height"
-                              th:field = "${offerViewModel.height}"
-                              class="form-control"
-                      /></td>
-                      <td><select th:field="${offerViewModel.motordirection}"><br/><br/>
-                        <option th:each="c : ${motordirections}" th:value="${c}" th:text="${c}">
-                        </option>
-                      </select>
-                      </td>
-                      <td><button type="button" class="btn-danger btn-sm" onclick="remove_tr(this)">Poz Sil</button> </td>
+                      <td><input type="number" th:field="*{unit}"/></td>
+                      <td><input type="number" th:field="*{width}"/></td>
+                      <td><input type="number" th:field="*{height}"/></td>
+                      <td><button type="button" class="btn btn-danger" onclick="remove_tr(this)">Sil</button></td>
                     </tr>
                   </tbody>
                 </table>
