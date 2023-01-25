@@ -1,33 +1,17 @@
 function showAlert() {
     alert("Yakında aktif olacak!!!");
 }
-
-var count = 1;
-var table = document.getElementById("table_body");
-
-function addColumn() {
-    var tableBody = document.getElementById("table_body");
-    if (!tableBody) {
-        console.error("There is no element with the id 'table_body' in the document.");
-        return;
-    }
-
-    var newRow = tableBody.insertRow(-1);
-    var newCell1 = newRow.insertCell(0);
-    var newCell2 = newRow.insertCell(1);
-    var newCell3 = newRow.insertCell(2);
-    newCell1.innerHTML = "<input type='number' name='unit' th:field=\"*{unit}\" />";
-    newCell2.innerHTML = "<input type='number' name='width' th:field=\"*{width}\" />";
-    newCell3.innerHTML = "<input type='number' name='height' th:field=\"*{height}\" />";
-    count++;
+    function addColumn(){
+    var table_body = document.getElementById("table_body");
+    var new_row = document.createElement("tr");
+    new_row.innerHTML = '<td><input type="number" th:field="*{unit}"/></td>' +
+    '<td><input type="number" th:field="*{width}"/></td>' +
+    '<td><input type="number" th:field="*{height}"/></td>' +
+    '<td><button type="button" class="btn btn-danger" onclick="remove_tr(this)">Sil</button></td>';
+    table_body.appendChild(new_row);
 }
 
-function remove_tr(This) {
-    This.closest('tr').remove();
+    function remove_tr(element){
+    var tr = element.parentNode.parentNode;
+    tr.parentNode.removeChild(tr);
 }
-
-
-
-
-
-

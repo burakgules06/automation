@@ -6,6 +6,7 @@ import com.guvenpanjur.guvenpanjur.model.entity.Customer;
 import com.guvenpanjur.guvenpanjur.model.viewmodel.CreateCustomerViewModel;
 import com.guvenpanjur.guvenpanjur.repository.CustomerRepository;
 import com.guvenpanjur.guvenpanjur.service.CustomerService;
+import com.guvenpanjur.guvenpanjur.service.Impl.CreatePdfFileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
 import java.util.Optional;
 
 @Controller
@@ -25,6 +27,7 @@ import java.util.Optional;
 public class CustomerController {
     @Autowired
     private final CustomerService customerService;
+    private final CreatePdfFileService createPdfFileService;
 
     //list customer
     @GetMapping("/customers/{pageno}")
@@ -67,6 +70,11 @@ public class CustomerController {
         createCustomer.setCustomerId(savedCustomer.getCustomerId());
 
         redirectAttributes.addAttribute("customerId", createCustomer.getCustomerId());
+        try {
+            createPdfFileService.createPdf();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         return "redirect:/offers/new";
     }
 

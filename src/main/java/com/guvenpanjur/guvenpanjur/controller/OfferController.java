@@ -15,14 +15,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
-
-
 @Controller
 @RequiredArgsConstructor
 public class OfferController {
@@ -49,8 +44,6 @@ public class OfferController {
     @GetMapping("/offers/new")
     public String createOffer(Model model,@RequestParam(value = "customerId",required = false)Long customerId){
         CreateOfferViewModel offerViewModel=new CreateOfferViewModel();
-
-
         if (customerId!=null){
             try {
                 customerService.getById(customerId);
@@ -82,11 +75,4 @@ public class OfferController {
         offerService.saveOffer(createOffer);
         return "redirect:/offers/0";
     }
-
-    @GetMapping("/selectcustomers")
-    public String selectCustomer(ModelMap model){
-        model.addAttribute("customers", customerService.findCustomers());
-        return "select_customer";
-    }
-
 }
