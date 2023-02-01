@@ -22,7 +22,7 @@ public class Customer {
     private String customerName;
     @Column(length = 45, nullable = false)
     private String customerLastName;
-    @Column(length = 12)
+    @Column(length = 12, nullable = false)
     private String customerTelNo;
 
     //address
