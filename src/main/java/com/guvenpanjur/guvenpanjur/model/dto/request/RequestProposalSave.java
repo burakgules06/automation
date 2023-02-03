@@ -9,6 +9,7 @@ public class RequestProposalSave {
     private Long motorTypeId;
     private Long fabricTypeId;
     private String color;
+    private int piece;
     private boolean colorType;
     private boolean packageType;
     private boolean printType;

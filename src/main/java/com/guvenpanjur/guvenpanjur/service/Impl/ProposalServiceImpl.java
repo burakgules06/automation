@@ -27,18 +27,33 @@ public class ProposalServiceImpl implements ProposalService {
         //CurrencyZipPerdeDTO crnZp=currencyService.getCurrency();
         List<BigDecimal> maliyet = new ArrayList<>();
         for (int i = 0; i <requestProposalSave.getPozs().size() ; i++) {
-            for(int i = 0; i<requestProposalSave.p)
             CalculateProposal calculateProposal=new CalculateProposal();
             var poz=requestProposalSave.getPozs().get(i);
-            maliyet.add(componentsResponse.getAltparcaAgirligiBirimMaliyet());
-            maliyet.add(componentsResponse.getAltparcaHortumBirimMaliyet());
-            maliyet.add()
+            for(int j = 0; j<requestProposalSave.getPiece();j++){
+                maliyet.add(componentsResponse.getAltparcaAgirligiBirimMaliyet());
+                maliyet.add(componentsResponse.getAltparcaHortumBirimMaliyet());
+                maliyet.add(componentsResponse.getAltparcaAksesuariBiremMaliyet());
+                maliyet.add(componentsResponse.getYanKapakBirimMaliyet());
+                maliyet.add(componentsResponse.getRulmanBirimMaliyet());
+                maliyet.add(componentsResponse.getPimliPlakeBM());
+                maliyet.add(componentsResponse.getPerderBoruBM());
+                maliyet.add(componentsResponse.getFermuarBM());
+                maliyet.add(componentsResponse.getBoruBasiBm());
+                maliyet.add(componentsResponse.getFitilBM());
+                maliyet.add(componentsResponse.getPerdeAksesuarBM());
+                maliyet.add(componentsResponse.getPaketlemeBM());
+                maliyet.add(componentsResponse.getBaskiBM());
+                maliyet.add(componentsResponse.getKutuBoyamaBm());
+                maliyet.add(componentsResponse.getYanRayBoyamaBm());
+                maliyet.add(componentsResponse.getAltParcaBoyamaBm());
+            }
             //map calculateProposal
             maliyet.add(calculateZipPerdeM(calculateProposal));
         }
-       return maliyet;
+       return (BigDecimal) maliyet;
     }
     BigDecimal calculateZipPerdeM(CalculateProposal calculateProposal){
+
         return new BigDecimal(100);
     }
 

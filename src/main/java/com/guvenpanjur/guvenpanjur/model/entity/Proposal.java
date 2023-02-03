@@ -3,6 +3,7 @@ package com.guvenpanjur.guvenpanjur.model.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Data
@@ -10,6 +11,7 @@ import java.util.List;
 public class Proposal {
     @Id
     private Long id;
+    private int piece;
     private String color;
     private boolean colorType;
     private boolean packageType;
